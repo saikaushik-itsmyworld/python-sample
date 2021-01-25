@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: List
+items:
+-
+    apiVersion: v1
+    kind: Deployment
+    metadata:
+        name: python-sample
+        labels:
+            app: python-sample
+    spec:
+        template:
+        metadata:
+            name: python-sample
+            app:
+                name: python-sample
+        spec:
+            containers:
+            - image: python-sample
+              name: python-sample
+              ports:
+              - name: python-sample
+                containerPort: 3333
+---
+    apiVersion: v1
+    kind: Service
+    metadata:
+        name: python-sample
+        labels:
+            app: python-sample
+            name: python-sample
+    spec:
+        ports:
+            - port: 80
+              protocol: TCP
+              targetPort: 3333
+        selector:
+            app: python-sample
+---
