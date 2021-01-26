@@ -14,7 +14,7 @@
             app: python-sample
         spec:
           containers:
-          - image: dockerhub.cisco.com/constellation-houston-docker-dev/python-sample:test2
+          - image: dockerhub.cisco.com/constellation-houston-docker-dev/python-sample:test3
             name: python-sample
             ports:
             - containerPort: 3333
@@ -35,38 +35,3 @@
         app: python-sample
       type: NodePort
 ---
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: mongodb-standalone
-spec:
-  serviceName: database
-  replicas: 1
-  selector:
-    matchLabels:
-      app: database
-  template:
-    metadata:
-      labels:
-        app: database
-        selector: mongodb-standalone
-    spec:
-      containers:
-      - name: mongodb-standalone
-        image: mongo:4.0.8
-        env: |
-          - name: MONGO_INITDB_ROOT_USERNAME
-            value: administrator
-          - name: MONGO_INITDB_ROOT_PASSWORD
-            value: wvbDjPOAXRlUEqRm
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: database
-  labels:
-    app: database
-spec:
-  clusterIP: None
-  selector:
-    app: database
