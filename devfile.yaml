@@ -8,14 +8,6 @@ projects:
       type: git
       branch: main
 components:
-  - id: ms-python/python/latest
-    memoryLimit: 512Mi
-    type: chePlugin
-  - mountSources: true
-    memoryLimit: 512Mi
-    type: dockerimage
-    image: 'quay.io/eclipse/che-python-3.7:7.21.1'
-    alias: python
   - type: kubernetes
     reference: deployment-manifests/mongodb.yaml
   - type: kubernetes
