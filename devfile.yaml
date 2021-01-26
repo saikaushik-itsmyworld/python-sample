@@ -9,9 +9,10 @@ projects:
       branch: main
 components:
   - type: kubernetes
-    reference: deployment-manifests/mongodb.yaml
+    reference: 'https://github.com/saikaushik-itsmyworld/python-sample/blob/main/deployment-manifests/mongodb.yaml'
+    alias: mongo
   - type: kubernetes
-    reference: deployment-manifests/deployment.yaml
+    reference: 'https://github.com/saikaushik-itsmyworld/python-sample/blob/main/deployment-manifests/deployment.yaml'
     alias: python-task-service
 commands:
   - name: start
