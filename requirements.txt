@@ -2,4 +2,5 @@ Flask
 Resource
 Api
 flask_restful
-
+flask_pymongo
+dnspython

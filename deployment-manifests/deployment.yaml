@@ -1,22 +1,23 @@
-    apiVersion: v1
+ apiVersion: apps/v1
     kind: Deployment
     metadata:
         name: python-sample
         labels:
             app: python-sample
     spec:
-        template:
+      selector:
+        matchLabels:
+          app: python-sample
+      template:
         metadata:
-            name: python-sample
-            app:
-                name: python-sample
+          labels:
+            app: python-sample
         spec:
-            containers:
-            - image: python-sample
-              name: python-sample
-              ports:
-              - name: python-sample
-                containerPort: 3333
+          containers:
+          - image: dockerhub.cisco.com/constellation-houston-docker-dev/python-sample:test1
+            name: python-sample
+            ports:
+            - containerPort: 3333
 ---
     apiVersion: v1
     kind: Service
@@ -26,10 +27,11 @@
             app: python-sample
             name: python-sample
     spec:
-        ports:
-            - port: 80
-              protocol: TCP
-              targetPort: 3333
-        selector:
-            app: python-sample
+      ports:
+        - port: 80
+          protocol: TCP
+          targetPort: 3333
+      selector:
+        app: python-sample
+      type: NodePort
 ---
