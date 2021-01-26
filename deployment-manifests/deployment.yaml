@@ -54,7 +54,7 @@ spec:
       containers:
       - name: mongodb-standalone
         image: mongo:4.0.8
-        env:
+        env: |
           - name: MONGO_INITDB_ROOT_USERNAME
             value: administrator
           - name: MONGO_INITDB_ROOT_PASSWORD
