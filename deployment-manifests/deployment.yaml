@@ -14,7 +14,7 @@
             app: python-sample
         spec:
           containers:
-          - image: dockerhub.cisco.com/constellation-houston-docker-dev/python-sample:test1
+          - image: dockerhub.cisco.com/constellation-houston-docker-dev/python-sample:test2
             name: python-sample
             ports:
             - containerPort: 3333
