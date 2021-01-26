@@ -1,0 +1,36 @@
+apiVersion: 1.0.0
+metadata:
+  name: python-task-service
+projects:
+  - name: python-task-service
+    source:
+      location: 'https://github.com/saikaushik-itsmyworld/python-sample.git'
+      type: git
+      branch: main
+components:
+  - id: ms-python/python/latest
+    memoryLimit: 512Mi
+    type: chePlugin
+  - mountSources: true
+    memoryLimit: 512Mi
+    type: dockerimage
+    image: 'quay.io/eclipse/che-python-3.7:7.21.1'
+    alias: python
+  - type: kubernetes
+    reference: deployment-manifests/mongodb.yaml
+  - type: kubernetes
+    reference: deployment-manifests/deployment.yaml
+    alias: python-task-service
+commands:
+  - name: start
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/python-sample'
+        type: exec
+        command: '. ${CHE_PROJECTS_ROOT}/.venv/bin/activate &&  pip install -r requirements.txt --user && python python-sample.py'
+        component: python
+  - name: set up venv
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/'
+        type: exec
+        command: python -m venv /projects/.venv
+        component: python
